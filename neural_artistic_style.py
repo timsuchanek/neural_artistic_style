@@ -91,7 +91,12 @@ def run():
                         choices=['max', 'avg'], help='Subsampling scheme.')
     parser.add_argument('--network', default='imagenet-vgg-verydeep-19.mat',
                         type=str, help='Network in MatConvNet format).')
+    parser.add_argument('--gpu', default='0',
+                        type=str, help='GPU to use')
     args = parser.parse_args()
+
+
+    os.putenv('CUDARRAY_DEVICE', args.gpu)
 
     if args.random_seed is not None:
         np.random.seed(args.random_seed)
